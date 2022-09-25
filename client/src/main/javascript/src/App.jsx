@@ -19,7 +19,7 @@ export default function App() {
                 redirect: 'follow',
                 referrerPolicy: 'no-referrer',
         };
-        fetch("http://192.168.1.20:8080/api/posts", props)
+        fetch("/api/posts", props)
                 .then((response) => response.json())
                 .then(it => setData(it));
     }, []);

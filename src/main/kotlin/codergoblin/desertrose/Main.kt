@@ -21,6 +21,7 @@ fun main(args: Array<String>) {
         it.enableCorsForAllOrigins()
         it.addStaticFiles("/static", CLASSPATH)
     }
+    server.before(RequestAnalyticsHandler())
     server.get("/api/posts") {
         it.jsonStream(Result(registry.categories, registry.posts))
     }
