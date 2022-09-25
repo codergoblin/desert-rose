@@ -24,11 +24,15 @@ export default function App() {
                 .then(it => setData(it));
     }, []);
 
+    const filteredPosts = data.posts
+        .filter((it) => selectedCategory.tag === "" || it.tags.indexOf(selectedCategory.tag) > -1 )
+        .sort((a,b) => Math.random());
+
     return (
         <div className='page-container container-xl col h-100'>
             <div className='row h-100'>
                     <Menu categories={data.categories} onSelectedCategory={setSelectedCategory} />
-                    <PictureGrid posts={data.posts.sort((a,b) => Math.random())} selectedCategory={selectedCategory} />
+                    <PictureGrid posts={filteredPosts} selectedCategory={selectedCategory} />
             </div>
         </div>
     );

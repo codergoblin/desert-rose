@@ -23,7 +23,6 @@ export default function Menu(props) {
         setSelectedCategory(getSelectedCategory(categories));
     }, [props.categories]);
 
-
     useEffect(() => {
         onSelectedCategory(selectedCategory);
     }, [selectedCategory]);
@@ -40,7 +39,7 @@ export default function Menu(props) {
             }
             var activeTag = selectedCategory.tag === category.tag ? " active" : "";
             result.push(
-                <li class={"nav-link" + activeTag} key={category.tag}>
+                <li className={"nav-link" + activeTag} key={category.tag}>
                     <h4><a href={'#' + category.tag}>{category.title}</a></h4>
                 </li>
             );
@@ -60,7 +59,7 @@ export default function Menu(props) {
                     {selectedCategory.description}
                 </p>
             </div>
-            <ul class="nav flex-column flex-shrink-1 mt-auto py-5">
+            <ul className="nav flex-column flex-shrink-1 mt-auto py-5">
                 {getCategories()}
             </ul>
         </div>

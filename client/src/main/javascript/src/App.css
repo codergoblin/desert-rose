@@ -5,9 +5,39 @@ html, body, .page-container, #root {
 }
 
 .dr-menu {
-    border: 1px solid blue;
 }
 
 .dr-picture-grid {
-    border: 1px solid red;
+}
+
+.dr-post-wrapper {
+}
+
+.dr-post-description {
+    transition: height 0.2s, margin-top 0.4s, opacity 0.5s;
+    margin-top: 0px;
+    height: 0px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.dr-post:hover .dr-post-description {
+    margin-top: 5px;
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
+a {
+  text-decoration: none !important;
+  font-weight: bold;
+  color: #dd8383 !important;
+}
+
+a:hover {
+  color: #c45555 !important;
+}
+
+a:active {
+  color: #ffc4c4 !important;
 }
