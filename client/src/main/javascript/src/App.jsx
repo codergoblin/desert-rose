@@ -26,7 +26,7 @@ export default function App() {
 
     const filteredPosts = data.posts
         .filter((it) => selectedCategory.tag === "" || it.tags.indexOf(selectedCategory.tag) > -1 )
-        .sort((a,b) => Math.random());
+        .sort((a,b) => Math.random() > Math.random());
 
     return (
         <div className='page-container container-xl col h-100'>
