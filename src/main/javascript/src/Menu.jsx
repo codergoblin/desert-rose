@@ -48,13 +48,13 @@ export default function Menu(props) {
     };
 
     return <>
-        <div className='dr-menu p-2 h-100 d-none d-md-flex col-md-3 d-flex flex-column'>
-            <div className='flex-grow-1 '>
-                <h3>
+        <div className='dr-menu p-3 h-100 d-none d-md-flex col-md-3 d-flex flex-column'>
+            <div className='flex-grow-1 dr-category-description'>
+                <h2 className="mb-2">
                     <a href='#'>
                     {selectedCategory.title}
                     </a>
-                </h3>
+                </h2>
                 <p>
                     {selectedCategory.description}
                 </p>

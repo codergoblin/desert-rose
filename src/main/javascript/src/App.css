@@ -1,7 +1,11 @@
+* {
+    font-family: Verdana, sans-serif;
+}
+
 html, body, .page-container, #root {
     width: 100%;
     height: 100%;
-    background-color: #f7f7f7;
+    background-color: #fefffb;
 }
 
 .dr-menu {
@@ -31,18 +35,24 @@ html, body, .page-container, #root {
 a {
   text-decoration: none !important;
   font-weight: bold;
-  color: #dd8383 !important;
+  color: #2a5d0c !important;
 }
 
 a:hover {
-  color: #c45555 !important;
+  color: #3ca429 !important;
 }
 
 a:active {
-  color: #ffc4c4 !important;
+  color: #122301 !important;
 }
 
 .dr-post-description-content {
     max-height: 300px;
     overflow: auto;
+}
+
+.dr-category-description {
+    overflow: auto;
+    flex-grow: 1;
+    max-height: 600px;
 }
