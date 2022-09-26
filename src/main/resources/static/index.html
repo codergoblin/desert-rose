@@ -1,50 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hey hoes</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta
+            name="description"
+            content="prortfolio"
+    />
+    <title>TODO</title>
 </head>
-<style>
-    .post {
-        max-width: 400px;
-        border: 1px solid black;
-        margin: 5px;
-        padding: 2px;
-        display: inline-block;
-    }
-
-    .post img {
-        width: 100%;
-    }
-
-</style>
 <body>
-
-<h1>Hello everybody</h1>
-<p>blah blahs</p>
-
-<div id="my-pics"></div>
-
-
-<script type="text/javascript">
-    var container = document.getElementById("my-pics");
-    fetch("/api/posts")
-        .then(response => response.json())
-        .then(posts => {
-           for (post of posts) {
-             var postNode = document.createElement("div");
-             var imageNode = document.createElement("img");
-             var textNode = document.createElement("p");
-             imageNode.src = post.pictureUrl;
-             postNode.className = "post";
-             textNode.textContent = post.description;
-
-             postNode.appendChild(imageNode);
-             postNode.appendChild(textNode);
-             container.appendChild(postNode);
-           }
-        });
-</script>
-
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
 </body>
 </html>
+<script src="bundle.min.js"></script>

@@ -37,7 +37,7 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = '11'
-}git
+}
 
 application {
     mainClassName = 'codergoblin.desertrose.MainKt'
@@ -48,3 +48,35 @@ node {
     npmInstallCommand = "install"
     nodeProjectDir = file("${project.projectDir}/src/main/javascript")
 }
+
+
+task fatJar("fatJar", type = Jar::class) {
+    baseName = "${project.name}-fat"
+    manifest {
+        attributes["Implementation-Title"] = "Desert rose simple profolio page"
+        attributes["Implementation-Version"] = version
+        attributes["Main-Class"] = "codergoblin.desertrose.MainKt"
+    }
+    from(configurations.runtimeClasspath.get().map({ if (it.isDirectory) it else zipTree(it) }))
+    with(tasks.jar.get() as CopySpec)
+}
+
+task buildClient(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+task copyClient(type: Copy, dependsOn: buildClient) {
+    into("${project.projectDir}/src/main/resources/static")
+    from("${project.projectDir}/src/main/javascript/dist/")
+    from("${project.projectDir}/src/main/javascript/public/")
+}
+
+task cleanJs(type: Delete) {
+    delete files("${project.projectDir}/src/main/javascript/build")
+    delete files("${project.projectDir}/src/main/javascript/dist")
+    delete files("${project.projectDir}/src/main/resources/static/*")
+}
+
+clean.finalizedBy cleanJs
+buildClient.dependsOn npmInstall
+build.dependsOn copyClient

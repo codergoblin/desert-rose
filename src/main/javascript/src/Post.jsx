@@ -12,7 +12,7 @@ export default function Post(props) {
                         alt={post.title}/>
             <div className="dr-post-description">
                 <h4>{post.title}</h4>
-                <p>{post.description}</p>
+                <p className="dr-post-description-content">{post.description}</p>
                 <small>{new Date(post.timestamp).toLocaleDateString('en-GB')}</small>
             </div>
         </div>

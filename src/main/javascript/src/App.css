@@ -41,3 +41,8 @@ a:hover {
 a:active {
   color: #ffc4c4 !important;
 }
+
+.dr-post-description-content {
+    max-height: 300px;
+    overflow: auto;
+}
