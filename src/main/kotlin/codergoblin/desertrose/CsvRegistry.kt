@@ -4,11 +4,13 @@ import org.apache.commons.csv.CSVFormat
 import java.io.File
 import java.io.FileInputStream
 import java.lang.System.currentTimeMillis
+import java.net.URI
+import java.net.URL
 import java.time.LocalDate
 import java.time.ZoneOffset.UTC
 import java.util.regex.Pattern
 
-class CsvLocalRegistry(private val config: DRConfig) : Registry {
+class CsvRegistry(private val config: DRConfig) : Registry {
 
     private val categoryCache = HashMap<String, Category>()
     private val postCache = HashMap<String, Post>()
@@ -33,16 +35,20 @@ class CsvLocalRegistry(private val config: DRConfig) : Registry {
         }
         lastUpdate = now
 
-        readCategories().forEach {
-            categoryCache[it.tag] = it
-        }
-        readPosts().forEach {
-            postCache[it.id] = it
+        try {
+            readCategories().forEach {
+                categoryCache[it.tag] = it
+            }
+            readPosts().forEach {
+                postCache[it.id] = it
+            }
+        } catch (e: Exception) {
+            System.err.println(e.message)
         }
     }
 
     private fun readCategories(): List<Category> {
-        return FileInputStream(File(config.csvDirectory, "categories.csv")).use {
+        return URL(config.categoryLocation).openStream().use {
             CSVFormat.Builder.create(CSVFormat.DEFAULT).apply {
                 setIgnoreSurroundingSpaces(true)
                 setHeader("tag", "title", "description")
@@ -55,7 +61,7 @@ class CsvLocalRegistry(private val config: DRConfig) : Registry {
     }
 
     private fun readPosts(): List<Post> {
-        return FileInputStream(File(config.csvDirectory, "posts.csv")).use {
+        return URL(config.postLocation).openStream().use {
             CSVFormat.Builder.create(CSVFormat.DEFAULT).apply {
                 setIgnoreSurroundingSpaces(true)
                 setHeader("id", "title", "pictureUrl", "tags", "date", "description")

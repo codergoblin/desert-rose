@@ -11,3 +11,5 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+console.log("DESERT ROSE, simple picture gallery. Done by codergoblin 2022, free to use open source under Apache 2.0 license https://github.com/codergoblin/desert-rose .");

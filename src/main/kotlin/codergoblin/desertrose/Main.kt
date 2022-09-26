@@ -1,4 +1,5 @@
-import codergoblin.desertrose.*
+package codergoblin.desertrose
+
 import com.sksamuel.hoplite.ConfigLoaderBuilder
 import com.sksamuel.hoplite.addCommandLineSource
 import com.sksamuel.hoplite.fp.getOrElse
@@ -7,7 +8,6 @@ import io.javalin.Javalin
 import io.javalin.http.staticfiles.Location.CLASSPATH
 
 fun main(args: Array<String>) {
-
     val config = ConfigLoaderBuilder.default()
         .addCommandLineSource(args)
         .addPropertySource(SystemPropertiesPropertySource())
@@ -15,7 +15,9 @@ fun main(args: Array<String>) {
         .loadConfig<DRConfig>()
         .getOrElse { DRConfig() }
 
-    val registry = CsvLocalRegistry(config)
+    println("Starting server: $config")
+
+    val registry = CsvRegistry(config)
 
     val server = Javalin.create {
         it.enableCorsForAllOrigins()

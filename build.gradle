@@ -1,6 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.node-gradle:gradle-node-plugin:3.4.0"
+    }
+}
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.7.10'
     id 'application'
+    id "com.github.node-gradle.node" version "3.4.0"
 }
 
 group = 'codergoblin.desertrose'
@@ -15,10 +28,7 @@ dependencies {
     implementation 'io.javalin:javalin:4.6.4'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
     implementation 'org.apache.commons:commons-csv:1.9.0'
-}
-
-test {
-    useJUnitPlatform()
+    implementation 'org.slf4j:slf4j-simple:1.7.31'
 }
 
 compileKotlin {
@@ -27,8 +37,14 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = '11'
-}
+}git
 
 application {
-    mainClassName = 'MainKt'
+    mainClassName = 'codergoblin.desertrose.MainKt'
+}
+
+node {
+    download = false
+    npmInstallCommand = "install"
+    nodeProjectDir = file("${project.projectDir}/src/main/javascript")
 }
