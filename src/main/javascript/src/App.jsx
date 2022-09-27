@@ -8,6 +8,10 @@ export default function App() {
     const [data, setData] = useState({categories: [], posts: []});
 
     useEffect(() => {
+        window.document.title = selectedCategory.title;
+    }, [selectedCategory]);
+
+    useEffect(() => {
         var props = {
                 mode: 'cors',
                 cache: 'no-cache',
